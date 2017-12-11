@@ -1,0 +1,34 @@
+---
+title: Time Series
+author: Katie Reisinger
+date: '2017-12-11'
+slug: time-series
+categories: []
+tags: []
+---
+
+```{r warning=FALSE,message=FALSE}
+library(Lahman)
+library(sqldf)
+library(ggplot2)
+```
+
+```{r}
+# extracting the data----------------------------------------
+
+query<-"SELECT yearID,HR
+FROM Batting
+WHERE playerID='ruthba01'"
+
+result<-sqldf(query)
+
+# visualize the data----------------------------------------
+
+ggplot()+
+  #geom_point(data=result,aes(x=yearID,y=HR))+
+  geom_line(data=result,aes(x=yearID,y=HR))+
+  ggtitle("Ruth's Homerun Totals Throughout the Years")+
+  xlab("year")+
+  ylab("homeruns")
+```
+

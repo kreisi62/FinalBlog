@@ -1,0 +1,28 @@
+---
+title: Histogram
+author: Katie Reisinger
+date: '2017-12-11'
+slug: histogram
+categories: []
+tags: []
+---
+
+
+
+<pre class="r"><code>library(Lahman)
+library(sqldf)
+library(ggplot2)</code></pre>
+<pre class="r"><code># extracting the data-----------------------------------------
+
+query&lt;-&quot;SELECT weight
+FROM Master&quot;
+
+result&lt;-sqldf(query)
+
+# visualize the data-----------------------------------------
+
+ggplot()+
+  geom_histogram(data=result,aes(x=weight),color=&quot;blue&quot;,fill=&quot;white&quot;,bins=50)+
+  ggtitle(&quot;Body-Weight Distribution for Baseball Players&quot;)</code></pre>
+<pre><code>## Warning: Removed 854 rows containing non-finite values (stat_bin).</code></pre>
+<p><img src="/post/2017-12-11-histogram_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>

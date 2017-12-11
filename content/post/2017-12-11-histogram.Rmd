@@ -1,0 +1,30 @@
+---
+title: Histogram
+author: Katie Reisinger
+date: '2017-12-11'
+slug: histogram
+categories: []
+tags: []
+---
+
+```{r warning=FALSE,message=FALSE}
+library(Lahman)
+library(sqldf)
+library(ggplot2)
+```
+
+```{r}
+# extracting the data-----------------------------------------
+
+query<-"SELECT weight
+FROM Master"
+
+result<-sqldf(query)
+
+# visualize the data-----------------------------------------
+
+ggplot()+
+  geom_histogram(data=result,aes(x=weight),color="blue",fill="white",bins=50)+
+  ggtitle("Body-Weight Distribution for Baseball Players")
+```
+
